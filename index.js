@@ -6,7 +6,7 @@ const Debug = vm.runInDebugContext('Debug')
 const options = {
   locals: true,
   args: true,
-  refs: [],
+  exprs: [],
   frames: 1
 }
 
@@ -26,20 +26,27 @@ Debug.setListener((event, exec_state, event_data, data) => {
     if (options.locals) {
       console.log(`local variables =>`)
       for (let local = 0; local < frame.localCount(); local++) {
-        console.log('    var', frame.localName(local), '=', frame.localValue(local).value_)
+        console.log('    var', frame.localName(local), '=', frame.localValue(local).value())
       }
     }
 
     if (options.args) {
       console.log(`arguments =>`)
       for (let arg = 0; arg < frame.argumentCount(); arg++) {
-        console.log('    ', frame.argumentName(arg), '=', frame.argumentValue(arg).value_)
+        console.log('    ', frame.argumentName(arg), '=', frame.argumentValue(arg).value())
       }
     }
 
-    if (options.refs.length) {
-      console.log(`scoped refs =>`)
-      // haven't worked this out yet...
+    if (options.exprs.length) {
+      console.log(`evaluate exprs =>`)
+      options.exprs.forEach((ref) => {
+        let result = 'failed to evaluate reference.'
+        try {
+          result = frame.evaluate(ref).value()
+        } catch (err) {
+        }
+        console.log('    ', ref, '=', result)
+      })
     }
 
     current_frame++
