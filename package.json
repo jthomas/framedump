@@ -1,0 +1,19 @@
+{
+  "name": "framedump",
+  "version": "0.0.1",
+  "description": "Dump frame variables when uncaughtExceptions are thrown.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jthomas/framedump.git"
+  },
+  "author": "James Thomas <james@jamesthom.as>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jthomas/framedump/issues"
+  },
+  "homepage": "https://github.com/jthomas/framedump#readme"
+}
