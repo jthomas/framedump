@@ -11,6 +11,10 @@ usage
 --
 
 ```
+npm install framedump
+```
+
+```
 // these are the default values, pass in argument to override.
 let options = {
   locals: true, // log local variable definitions in frame
